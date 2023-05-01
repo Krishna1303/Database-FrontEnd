@@ -58,7 +58,7 @@ app.post('/addUser', (req, res) => {
           if (req.body.city) {
             if (req.body.state) {
               if (req.body.zipcode) {
-                const sql = `INSERT INTO users(name,email,phoneNo,address1,address2,city,state,zipcode) VALUES (
+                const sql = `INSERT INTO user(name,email,phoneNo,address1,address2,city,state,zipcode) VALUES (
                             '${req.body.name}','${req.body.email}','${req.body.phoneNo}','${req.body.address1}','${req.body.address2}','${req.body.city}','${req.body.state}','${req.body.zipcode}')`;
                 db.query(sql, (err, result) => {
                   if (err) {
@@ -131,5 +131,5 @@ app.get('/errorPage', (req, res) => {
 })
 
 app.get('/', async (req, res) => {
-  res.status(200).json("dummy");
+  res.redirect('/users');
 });
