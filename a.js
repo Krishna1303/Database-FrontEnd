@@ -1,14 +1,14 @@
 const readXlsxFile = require('read-excel-file/node')
-readXlsxFile(exFile).then((rows) => {
+readXlsxFile(path.join(__dirname,'users.csv')).then((rows) => {
     rows.shift()
-    database.connect((error) => {
+    db.connect((error) => {
       if (error) {
         console.error(error)
       } else {
-        let query = 'INSERT INTO user (id, name, email) VALUES ?'
-        connection.query(query, [rows], (error, response) => {
+        let query = 'INSERT INTO user (name,email,phoneNo,address1,address2,city,state,zipcode) VALUES ?'
+        db.query(query, [rows], (error, response) => {
           console.log(error || response)
         })
       }
     })
-  })
+  });
