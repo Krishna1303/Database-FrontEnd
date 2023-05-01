@@ -3,8 +3,9 @@ const mysql = require('mysql2');
 const bodyParser = require('body-parser');
 const path = require("path");
 const app = express();
+const dotenv = require('dotenv');
 const credentials = require(path.join(__dirname, 'credentials.js'));
-
+dotenv.config();
 const errorMessages = {
   "1": "Please enter your name",
   "2": "Please enter your email address",
@@ -29,7 +30,6 @@ const db = mysql.createConnection({
   password: credentials.password,
   database: credentials.database
 });
-console.log(db.host);
 db.connect((err) => {
   if (err) {
     throw err;
@@ -39,9 +39,9 @@ db.connect((err) => {
 
 app.set("view engine", 'ejs');
 app.set('views', path.join(__dirname, 'views'));
-
-app.listen(3000, () => {
-  console.log('Server started on port 3000');
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log('Server started on port ',PORT);
 });
 var logger = (req, res, next) => {
   console.log(req.originalUrl);
