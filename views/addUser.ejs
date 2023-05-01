@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Contact Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+    }
+    
+    form {
+      background-color: #fff;
+      padding: 20px;
+      padding-right: 35px;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+      margin: 10px auto;
+      max-width: 800px;
+    }
+    
+    label {
+      display: block;
+      margin-bottom: 10px;
+    }
+    
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    textarea {
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      width: 100%;
+      margin-bottom: 20px;
+    }
+    
+    input[type="submit"] {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    
+    input[type="submit"]:hover {
+      background-color: #3e8e41;
+    }
+  </style>
+</head>
+<body>
+  <form action="/addUser" method="POST">
+    <label for="name">Name</label>
+    <input type="text" name="name" required>
+    
+    <label for="email">Email</label>
+    <input type="email" name="email">
+    
+    <label for="phone">Phone Number</label>
+    <input type="tel" name="phoneNo" required>
+    
+    <label for="address1">Address Line 1</label>
+    <textarea name="address1" required></textarea>
+    
+    <label for="address1">Address Line 2</label>
+    <textarea name="address2"></textarea>
+    
+    <label for="city">City</label>
+    <input type="text" name="city" required>
+    
+    <label for="city">State</label>
+    <input type="text" name="state" required>
+    
+    <label for="zipcode">Zipcode</label>
+    <input type="text" name="zipcode" required>
+    
+    <input type="submit" value="Submit">
+  </form>
+</body>
+</html>
