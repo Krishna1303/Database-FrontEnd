@@ -24,18 +24,18 @@ const errorMessagesButtonText = {
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-const db = mysql.createConnection({
+const db = mysql.createPool({
   host: credentials.host,
   user: credentials.user,
   password: credentials.password,
   database: credentials.database
 });
-db.connect((err) => {
-  if (err) {
-    throw err;
-  }
-  console.log('Connected to database');
-});
+// db.connect((err) => {
+//   if (err) {
+//     throw err;
+//   }
+//   console.log('Connected to database');
+// });
 
 app.set("view engine", 'ejs');
 app.set('views', path.join(__dirname, 'views'));
