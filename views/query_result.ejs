@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Query Result</title>
+    <style>
+      /* Add some basic styling */
+      body {
+        font-family: sans-serif;
+      }
+      form {
+        margin-bottom: 20px;
+      }
+      label {
+        font-weight: bold;
+      }
+      select {
+        display: block;
+        margin-bottom: 10px;
+      }
+      table {
+      border-collapse: collapse;
+      margin: 20px auto;
+      background-color: #fff;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+    }
+    
+    th,
+    td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: left;
+    }
+    
+    th {
+      background-color: #4CAF50;
+      color: white;
+    }
+    
+    tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+    
+    tr:hover {
+      background-color: #ddd;
+    }
+    h1 {
+            text-align-last: center;
+            background-color: #fff;
+            padding: 20px;
+            padding-right: 35px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            margin: 10px auto;
+            max-width: 800px;
+        }
+    </style>
+  </head>
+  <body>
+    <h1>Query Result is - </h1>
+    <% if (results.length > 0) { %>
+      <table>
+        <thead>
+          <tr>
+            <% columns.forEach(function(column) { %>
+              <th><%= column %></th>
+            <% }) %>
+          </tr>
+        </thead>
+        <tbody>
+          <% results.forEach(function(result) { %>
+            <tr>
+              <% columns.forEach(function(column) { %>
+                <td><%= result[column] || 0 %></td>
+              <% }) %>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    <% } %>
+  </body>
+</html>

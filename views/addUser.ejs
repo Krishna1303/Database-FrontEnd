@@ -1,7 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Contact Form</title>
+  <title>Add user form</title>
+  
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>  
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -9,6 +13,16 @@
     }
     
     form {
+      background-color: #fff;
+      padding: 20px;
+      padding-right: 35px;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+      margin: 10px auto;
+      max-width: 800px;
+    }
+    h1 {
+      text-align-last: center;
       background-color: #fff;
       padding: 20px;
       padding-right: 35px;
@@ -49,6 +63,8 @@
   </style>
 </head>
 <body>
+  <div class="container">
+    <h1>Add user form</h1>
   <form action="/addUser" method="POST">
     <label for="name">Name</label>
     <input type="text" name="name" required>
@@ -76,5 +92,6 @@
     
     <input type="submit" value="Submit">
   </form>
+  </div>
 </body>
 </html>

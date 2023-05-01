@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Select Columns</title>
+    <!-- <link rel="stylesheet" type="text/css" href="style.css"> -->
+    <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"
+        type="text/javascript"></script>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+        }
+
+        form {
+            background-color: #fff;
+            padding: 20px;
+            padding-right: 35px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            margin: 10px auto;
+            max-width: 800px;
+        }
+
+        h1 {
+            text-align-last: center;
+            background-color: #fff;
+            padding: 20px;
+            padding-right: 35px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            margin: 10px auto;
+            max-width: 800px;
+        }
+
+        .columns-list,
+        .selected-list {
+            display: inline-block;
+            vertical-align: top;
+            margin: 10px;
+            padding: 10px;
+            background-color: #eee;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            min-width: 200px;
+            min-height: 100px;
+        }
+
+        .columns-list h2,
+        .selected-list h2 {
+            margin-top: 0;
+        }
+
+        ul {
+            margin: 0;
+            padding: 0;
+            list-style-type: none;
+        }
+
+        li {
+            margin: 5px;
+            padding: 5px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            cursor: move;
+        }
+
+        button {
+            display: block;
+            margin: 10px auto;
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0069d9;
+        }
+    </style>
+    <script>
+        $(document).ready(function () {
+            // Make columns draggable
+            $('.column').draggable({
+                helper: 'clone'
+            });
+
+            // Add columns to selected list when dropped
+            $('.selected-list').droppable({
+                drop: function (event, ui) {
+                    var column = ui.draggable.clone();
+                    column.appendTo(this);
+                }
+            });
+
+            // Remove columns from selected list when clicked
+            $('.selected-list').on('click', '.column', function () {
+                $(this).remove();
+            });
+
+            // Submit form on button click
+            $('#submit-btn').click(function () {
+                var columns = [];
+                $('.selected-list .column').each(function () {
+                    columns.push($(this).attr('name').trim());
+                });
+                $('#columns-input').val(JSON.stringify(columns));
+                $('#form').submit();
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <h1>Drag and Drop the columns</h1>
+    <form id="form" action="/queryPageResults" method="POST">
+        <div class="columns-list">
+            <h2>Available Columns</h2>
+            <ul>
+                <li class="column" name="name">Name</li>
+                <li class="column" name="email">Email</li>
+                <li class="column" name="phoneNo">Phone Number</li>
+                <li class="column" name="address1">Address Line 1</li>
+                <li class="column" name="address2">Address Line 2</li>
+                <li class="column" name="city">City</li>
+                <li class="column" name="state">State</li>
+                <li class="column" name="zipcode">Zipcode</li>
+            </ul>
+        </div>
+        <div class="selected-list">
+            <h2>Selected Columns</h2>
+        </div>
+        <input type="hidden" name="columns" id="columns-input">
+        <button type="button" id="submit-btn">Submit</button>
+    </form>
+</body>
+
+</html>
