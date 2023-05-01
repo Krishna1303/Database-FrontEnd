@@ -132,5 +132,9 @@ app.get('/errorPage', (req, res) => {
 })
 
 app.get('/', async (req, res) => {
+  // db.query('create table user (id int not null auto_increment,name varchar(50),email varchar(50),phoneNo varchar(50),address1 varchar(50),address2 varchar(50),city varchar(50),state varchar(50),zipcode varchar(50),primary key(id));', function (error, results, fields) {
+  //   if (error) throw error;
+  //   res.redirect('/users');
+  // });
   res.redirect('/users');
 });
